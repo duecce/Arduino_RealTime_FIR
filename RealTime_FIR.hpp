@@ -14,13 +14,14 @@ class RT_FIR {
         node *head;
         T last_output;
     public:
-        RT_FIR (uint32 n_value, T *weight, T init_value = 0);
-        T add (T value);
-        T output( );
+        RT_FIR(uint32 n_value, T *weight, T init_value = 0);
+        T add(T value);
+        T compute( );
+        T getLastOutput( );
 };
 
 template <typename T>
-RT_FIR<T>::RT_FIR (uint32 n_value, T *weight, T init_value) {
+RT_FIR<T>::RT_FIR(uint32 n_value, T *weight, T init_value) {
     node *current;
     last_output = 0;
     if (n_value == 0)
@@ -41,15 +42,15 @@ RT_FIR<T>::RT_FIR (uint32 n_value, T *weight, T init_value) {
 }
 
 template <typename T>
-T RT_FIR<T>::add (T value) {
+T RT_FIR<T>::add(T value) {
     this->head->value = value;
     this->head = this->head->next;
-    this->last_output = output();
+    this->last_output = compute( );
     return this->last_output;
 }
 
 template <typename T>
-T RT_FIR<T>::output( ) {
+T RT_FIR<T>::compute( ) {
     T filtered = 0;
     void *_ = this->head;
     do {
@@ -59,4 +60,8 @@ T RT_FIR<T>::output( ) {
     return filtered;
 }
 
+template <typename T>
+T RT_FIR<T>::getLastOutput( ) {
+    return this->last_output;
+}
 #endif // REALTIME_FIR
