@@ -20,7 +20,7 @@ void setup() {
 }
 
 // to correct filtering data you have to know the real adc sample frequency, in this example I didn't implement it
-// It can be done using interrupt
+// It can be done using a timer
 void loop() {
   float input;
   if((digitalRead(10) == 1)||(digitalRead(11) == 1)){
