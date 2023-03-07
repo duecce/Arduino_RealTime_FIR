@@ -1,7 +1,9 @@
 # Arduino Real-Time FIR
-A basic library that can help you to process data in real-time with Arduino. This library compute a FIR filtering. To store data it uses a circular linked list.
+This library computes Finite Impulse Response Filter. </br>
+Filter coefficients, for example, could be evaluate in Matlab (R) and then passed as arguments in the FIR constructor method.
+
 ## Usage example: 
-I test this FIR processing with the AD8232 (Single-Lead, heart rate monitor front-end): [AD8232 datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/ad8232.pdf)
+This example uses RealTime_FIR library to fitler the signal acquired from an AD8232 connected to an Arduino Uno (Single-Lead, heart rate monitor front-end): [AD8232 datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/ad8232.pdf)
 
 ```
 #include "RealTime_FIR.hpp"
@@ -10,7 +12,7 @@ I test this FIR processing with the AD8232 (Single-Lead, heart rate monitor fron
 // or in many other way
 
 float FIRcoeff[] = {0.25, 0.25, 0.25, 0.25}; // Simple coefficients for a moving average with n=4
-RT_FIR<float> fir = RT_FIR<float>(4, FIRcoeff);
+RT_FIR<float> fir = RT_FIR<float>(4, FIRcoeff); // RT_FIR instance
 
 void setup() {
   // initialize the serial communication:
